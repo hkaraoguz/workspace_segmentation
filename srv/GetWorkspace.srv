@@ -1,0 +1,4 @@
+float32 min_distance
+float32 max_distance
+-----
+workspace_segmentation/Workspace result
