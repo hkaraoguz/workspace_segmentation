@@ -345,8 +345,7 @@ void extractPlaneGlobalIndices(pcl::PointCloud<pcl::PointXYZRGB>::ConstPtr cloud
     // Save ascii must be true to get the color right
     writer.write<pcl::PointXYZRGB> (ss.str (), *result, true); //*
 
-    pcl_sub.shutdown();
-    ros::shutdown();
+
 
 }
 
@@ -520,6 +519,10 @@ void extractPlane2(PointCloudRGB::ConstPtr msg)
         ss << "workspace_cluster"<<".pcd";
 
         writer.write<pcl::PointXYZRGB> (ss.str (), *workspace_cluster, true);
+
+        pcl_sub.shutdown();
+        ros::shutdown();
+
     }
 
 }
