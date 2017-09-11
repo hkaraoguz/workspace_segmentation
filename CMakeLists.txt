@@ -12,10 +12,13 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   message_generation
   pcl_ros
+  cv_bridge
+  image_transport
 )
 
 ## System dependencies are found with CMake's conventions
  find_package(Boost REQUIRED COMPONENTS system)
+find_package(OpenCV REQUIRED)
 
 
 ## Uncomment this if the package has a setup.py. This macro ensures
@@ -105,7 +108,7 @@ add_service_files(
 catkin_package(
    #INCLUDE_DIRS include
 #  LIBRARIES table_segmentation
-  CATKIN_DEPENDS pcl_ros roscpp std_msgs message_runtime
+  CATKIN_DEPENDS pcl_ros roscpp std_msgs message_runtime cv_bridge image_transport
 #  DEPENDS system_lib
 )
 
@@ -118,6 +121,8 @@ catkin_package(
 include_directories(
   #include
   ${catkin_INCLUDE_DIRS}
+${OpenCV_INCLUDE_DIRS}
+  
 )
 
 ## Declare a C++ library
@@ -134,7 +139,7 @@ include_directories(
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
 add_executable(${PROJECT_NAME}_node src/workspace_segmentation_node.cpp)
-
+add_executable(manual_segmentation_node src/manual_segmentation_node.cpp)
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
 ## target back to the shorter version for ease of user use
@@ -148,6 +153,8 @@ add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catk
 ## Specify libraries to link a library or executable target against
  target_link_libraries(${PROJECT_NAME}_node
      ${catkin_LIBRARIES} )
+ target_link_libraries(manual_segmentation_node
+     ${OpenCV_LIBRARIES} ${catkin_LIBRARIES})
 #############
 ## Install ##
 #############
