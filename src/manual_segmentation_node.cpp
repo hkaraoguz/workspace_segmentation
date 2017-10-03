@@ -196,7 +196,7 @@ void saveConfig()
 
     if(stream.is_open()){
 
-        stream<<table_topleft_x<<"\n"<<table_topleft_y<<"\n"<<workspace_min_x<<"\n"<<workspace_max_x<<"\n"<<workspace_min_y<<"\n"<<workspace_max_y<<"\n"<<roll_angler<<"\n"<<pitch_angler<<"\n"<<yaw_angler;
+        stream<<workspace_min_x<<"\n"<<workspace_max_x<<"\n"<<workspace_min_y<<"\n"<<workspace_max_y<<"\n"<<table_topleft_x<<"\n"<<table_topleft_y<<"\n"<<roll_angler<<"\n"<<pitch_angler<<"\n"<<yaw_angler;
 
         stream.close();
 
